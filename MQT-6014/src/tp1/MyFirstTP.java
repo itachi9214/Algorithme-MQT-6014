@@ -14,10 +14,11 @@ public class MyFirstTP {
 
     // code pour appeler la fonction f)
     int nf = 10;
+    System.out.println("La somme est égale : " + sum(nf));
 
     // code pour appeler la fonction g)
     int g_n = 25;
-
+    collatz(g_n);
   }
 
   private static int estimateCeiling(double number) {
@@ -68,6 +69,27 @@ public class MyFirstTP {
     }
 
     return max;
+  }
+
+  private static double sum(int limit) {
+    double sum = 0;
+    for (double i = 1; i <= limit; i++) {
+      sum = sum + Math.pow(0.9995, i) * Math.sqrt(i) / (2 * i + 1);
+    }
+
+    return sum;
+  }
+
+  private static void collatz(int number) {
+    while (number != 1) {
+      if ((number % 2) == 0) {
+        number = number / 2;
+        System.out.println(number);
+      } else {
+        number = 3 * number + 1;
+        System.out.println(number);
+      }
+    }
   }
 
 }
