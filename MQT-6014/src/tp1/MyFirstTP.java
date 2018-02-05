@@ -42,7 +42,14 @@ public class MyFirstTP {
   }
 
   private static int estimateRound(double number) {
-    return (int) number;
+    final int DECIMAL_INDEX = 1;
+    String[] seperateNumberTab = String.valueOf(number).split("\\.");
+    int decimalValue = Integer.parseInt(seperateNumberTab[DECIMAL_INDEX]);
+
+    if ((number > 0 && decimalValue >= 5) || (number < 0 && decimalValue <= 5))
+      return estimateCeiling(number);
+    else
+      return estimateFloor(number);
   }
 
   private static void estimateNumber(double ceiling, double floor, double round) {
