@@ -4,20 +4,25 @@ public class MyFirstTP {
 
   public static void main(String[] args) {
 
-    // code pour appeler la fonction d)
+    System.out.println("Exercice pour la fonction d avec des valeurs tests\n");
     double a = 2.3, b = 5.2, c = 7.3;
     estimateNumber(a, b, c);
-    // code pour appeler la fonction e)
-    double n1 = 13, n2 = 27, n3 = 53, n4 = 28;
-    System.out.println(maxValue(n1, n2, n3, n4));
+    System.out.println("-------------------------------------------\n");
 
-    // code pour appeler la fonction f)
+    System.out.println("resultats pour la fonction e avec des valeurs tests\n");
+    double n1 = 13, n2 = 27, n3 = 53, n4 = 28;
+    System.out.println("La valeure la plu grande est:" + maxValue(n1, n2, n3, n4));
+    System.out.println("-------------------------------------------\n");
+
+    System.out.println("resultats pour la fonction f avec des valeurs tests\n");
     int nf = 10;
     System.out.println("La somme est égale : " + sum(nf));
+    System.out.println("-------------------------------------------\n");
 
-    // code pour appeler la fonction g)
+    System.out.println("resultats pour la fonction g avec des valeurs tests\n");
     int g_n = 25;
     collatz(g_n);
+    System.out.println("-------------------------------------------\n");
   }
 
   private static int estimateCeiling(double number) {
