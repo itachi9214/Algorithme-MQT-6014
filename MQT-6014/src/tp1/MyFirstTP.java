@@ -69,9 +69,7 @@ public class MyFirstTP {
     double table[] = { value1, value2, value3, value4 };
 
     for (int i = 0; i < table.length; i++) {
-      if (max >= table[i])
-        max = max;
-      else
+      if (max < table[i])
         max = table[i];
     }
 
