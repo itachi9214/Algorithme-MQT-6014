@@ -7,7 +7,6 @@ public class MyFirstTP {
     // code pour appeler la fonction d)
     double a = 2.3, b = 5.2, c = 7.3;
     estimateNumber(a, b, c);
-
     // code pour appeler la fonction e)
     double n1 = 13, n2 = 27, n3 = 53, n4 = 28;
     System.out.println(maxValue(n1, n2, n3, n4));
@@ -42,11 +41,8 @@ public class MyFirstTP {
   }
 
   private static int estimateRound(double number) {
-    final int DECIMAL_INDEX = 1;
-    String[] seperateNumberTab = String.valueOf(number).split("\\.");
-    int decimalValue = Integer.parseInt(seperateNumberTab[DECIMAL_INDEX]);
-
-    if ((number > 0 && decimalValue >= 5) || (number < 0 && decimalValue <= 5))
+    double decimalValue = number - (int) number;
+    if ((number > 0 && decimalValue >= 0.5) || (number < 0 && decimalValue >= -0.5))
       return estimateCeiling(number);
     else
       return estimateFloor(number);
