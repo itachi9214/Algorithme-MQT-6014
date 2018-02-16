@@ -40,7 +40,7 @@ public class Boat {
   public boolean isTouch(int abscissa, int ordinate) {
     if (isSunk() && (this.abscissa == abscissa && this.ordinate == ordinate)) {
       System.out.println("Bateau deja touché");
-      return true;
+      return false;
     } else if (this.abscissa == abscissa && this.ordinate == ordinate) {
       setStatutBoat(true);
       return true;
