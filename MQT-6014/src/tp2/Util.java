@@ -9,7 +9,7 @@ public class Util {
   public static int getNumber(int minimum, int maximum) {
     int number;
     do {
-      // System.out.println("Entrer un nombre valide :");
+      System.out.println("Entrer un nombre valide :");
       scanner = new Scanner(System.in);
       number = scanner.nextInt();
     } while (number > minimum && number > maximum);

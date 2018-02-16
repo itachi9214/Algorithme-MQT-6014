@@ -41,26 +41,25 @@ public class Game {
 
   public void startGame() {
     int boatLeft = NUMBER_OF_BOAT;
+    boolean noTouch;
     while (!allSunk()) {
+      noTouch = true;
       System.out.println("Bateau restant :" + boatLeft);
       System.out.println("Entrez l'abscisse ");
       int abscissa = Util.getNumber(MINIMUM, DIMENSION_ABSCISSA);
       System.out.println("Entrez l'ordonnee ");
       int ordinate = Util.getNumber(MINIMUM, DIMENSION_ORDINATE);
       for (int i = MINIMUM; i < NUMBER_OF_BOAT; i++) {
-        System.out.println("Bateau " + i);
-        System.out.println("abscisse " + listOfBoat.get(i).getAbscissa());
-        System.out.println("ordonne " + listOfBoat.get(i).getOrdinate());
-        System.out.println(listOfBoat.get(i).isSunk());
-        System.out.println("--------------------------------------------------");
         if (listOfBoat.get(i).isTouch(abscissa, ordinate)) {
           boatLeft--;
+          noTouch = false;
           System.out.println("Bateau touché");
         }
       }
-      System.out.println("Aucun bateau touché " + allSunk());
+      if (noTouch)
+        System.out.println("Aucun bateau touché ");
     }
-    System.out.println("Vous avez gagné felicitation");
+    System.out.println("Félicitation Vous avez gagné ");
 
   }
 }
