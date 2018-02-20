@@ -17,6 +17,7 @@ public class Recursive {
     arraylist.add(5);
     arraylist.add(0);
     arraylist.add(1);
+    arraylist.add(1);
     System.out.println(returnMinValue(arraylist));
 
   }
