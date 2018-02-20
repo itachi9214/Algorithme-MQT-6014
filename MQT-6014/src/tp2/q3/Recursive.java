@@ -19,17 +19,16 @@ public class Recursive {
     arraylist.add(1);
     arraylist.add(1);
     arraylist.add(1);
-    arraylist.add(1);
     System.out.println(returnMinValue(arraylist));
 
   }
 
-  public static int minValue(List<Integer> table) {
+  private static int minValue(List<Integer> table) {
     Collections.sort(table);
     return table.get(INDEX_FIRST_ELEMENT);
   }
 
-  public static List<Integer> extractFirstSubList(List<Integer> table) {
+  private static List<Integer> extractFirstSubList(List<Integer> table) {
     List<Integer> firstSubList;
     if (table.size() % 2 == 0)
       firstSubList = table.subList(0, table.size() / 2);
@@ -38,7 +37,7 @@ public class Recursive {
     return firstSubList;
   }
 
-  public static List<Integer> extractSecondSubList(List<Integer> table) {
+  private static List<Integer> extractSecondSubList(List<Integer> table) {
     List<Integer> secondSubList = table.subList(table.size() / 2, table.size());
     if (table.size() % 2 == 0)
       secondSubList = table.subList(table.size() / 2, table.size());
@@ -48,7 +47,7 @@ public class Recursive {
 
   }
 
-  public static int returnMinValue(List<Integer> table) {
+  private static int returnMinValue(List<Integer> table) {
     if (table.size() <= 2)
       return minValue(table);
     List<Integer> firstList = extractFirstSubList(table);
