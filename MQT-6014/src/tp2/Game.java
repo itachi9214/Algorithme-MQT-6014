@@ -40,6 +40,7 @@ public class Game {
   }
 
   public void startGame() {
+	int numberOfShot=0;
     int boatLeft = NUMBER_OF_BOAT;
     boolean noTouch;
     while (!allSunk()) {
@@ -56,10 +57,11 @@ public class Game {
           System.out.println("Bateau touché");
         }
       }
+      numberOfShot++;
       if (noTouch)
         System.out.println("Aucun bateau touché ");
     }
-    System.out.println("Félicitation Vous avez gagné ");
+    System.out.println("Félicitation Vous avez gagné en "+numberOfShot+" coups");
 
   }
 }
