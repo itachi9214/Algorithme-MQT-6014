@@ -2,22 +2,22 @@ package tp2;
 
 import java.util.ArrayList;
 
-public class Game {
+public class Jeu {
 
-  private static final int NUMBER_OF_BOAT = 4;
-  private static final int DIMENSION_ABSCISSA = 4;
-  private static final int DIMENSION_ORDINATE = 4;
+  private static final int NB_BATEAUX = 4;
+  private static final int DIM_X = 4;
+  private static final int DIM_Y = 4;
   private static final int MINIMUM = 0;
   private static final int MAXIMUM = 5;
 
-  private ArrayList<Boat> listOfBoat;
+  private ArrayList<Bateau> listOfBoat;
 
-  public Game() {
+  public Jeu() {
     listOfBoat = new ArrayList<>();
-    for (int i = MINIMUM; i < NUMBER_OF_BOAT; i++) {
+    for (int i = MINIMUM; i < NB_BATEAUX; i++) {
       int randomNumberAbscissa = generateRandomNumber();
       int randomNumberOrdinate = generateRandomNumber();
-      Boat boat = new Boat(randomNumberAbscissa, randomNumberOrdinate);
+      Bateau boat = new Bateau(randomNumberAbscissa, randomNumberOrdinate);
       listOfBoat.add(boat);
     }
 
@@ -27,31 +27,31 @@ public class Game {
     return (int) (Math.random() * (MAXIMUM - MINIMUM));
   }
 
-  public boolean allSunk() {
+  public boolean tousCoules() {
     int numberOfBoatSunk = 0;
     for (int i = MINIMUM; i < listOfBoat.size(); i++) {
-      if (listOfBoat.get(i).isSunk())
+      if (listOfBoat.get(i).estCoule())
         numberOfBoatSunk++;
     }
-    if (numberOfBoatSunk == NUMBER_OF_BOAT)
+    if (numberOfBoatSunk == NB_BATEAUX)
       return true;
     else
       return false;
   }
 
-  public void startGame() {
+  public void demarrer() {
 	int numberOfShot=0;
-    int boatLeft = NUMBER_OF_BOAT;
+    int boatLeft = NB_BATEAUX;
     boolean noTouch;
-    while (!allSunk()) {
+    while (!tousCoules()) {
       noTouch = true;
       System.out.println("Bateau restant :" + boatLeft);
       System.out.println("Entrez l'abscisse ");
-      int abscissa = Util.getNumber(MINIMUM, DIMENSION_ABSCISSA);
+      int abscissa = Util.getNumber(MINIMUM, DIM_X);
       System.out.println("Entrez l'ordonnee ");
-      int ordinate = Util.getNumber(MINIMUM, DIMENSION_ORDINATE);
-      for (int i = MINIMUM; i < NUMBER_OF_BOAT; i++) {
-        if (listOfBoat.get(i).isTouch(abscissa, ordinate)) {
+      int ordinate = Util.getNumber(MINIMUM, DIM_Y);
+      for (int i = MINIMUM; i < NB_BATEAUX; i++) {
+        if (listOfBoat.get(i).estTouche(abscissa, ordinate)) {
           boatLeft--;
           noTouch = false;
           System.out.println("Bateau touché");

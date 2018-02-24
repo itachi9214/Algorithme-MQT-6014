@@ -1,12 +1,12 @@
 package tp2;
 
-public class Boat {
+public class Bateau {
 
   private int abscissa;
   private int ordinate;
   private boolean statutBoat;
 
-  public Boat(int abscissa, int ordinate) {
+  public Bateau(int abscissa, int ordinate) {
     super();
     this.abscissa = abscissa;
     this.ordinate = ordinate;
@@ -29,7 +29,7 @@ public class Boat {
     this.ordinate = ordinate;
   }
 
-  public boolean isSunk() {
+  public boolean estCoule() {
     return statutBoat;
   }
 
@@ -37,8 +37,8 @@ public class Boat {
     this.statutBoat = statutBoat;
   }
 
-  public boolean isTouch(int abscissa, int ordinate) {
-    if (isSunk() && (this.abscissa == abscissa && this.ordinate == ordinate)) {
+  public boolean estTouche(int abscissa, int ordinate) {
+    if (estCoule() && (this.abscissa == abscissa && this.ordinate == ordinate)) {
       System.out.println("Bateau deja touché");
       return false;
     } else if (this.abscissa == abscissa && this.ordinate == ordinate) {
