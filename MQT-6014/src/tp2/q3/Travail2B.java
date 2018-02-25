@@ -63,6 +63,7 @@ public class Travail2B {
       return returnMinValueRecursive(secondList);
   }
 
+  /* Methode optionnelle pour comparer avec la recursivité */
   public static int returnMinValueIterative(List<Integer> table) {
     while (table.size() != 2) {
       List<Integer> firstList = extractFirstSubList(table);
