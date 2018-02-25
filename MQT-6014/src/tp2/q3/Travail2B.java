@@ -12,16 +12,17 @@ public class Travail2B {
     ArrayList<Integer> arraylist = new ArrayList<>();
     arraylist.add(1);
     arraylist.add(2);
-    arraylist.add(-3);
+    arraylist.add(15);
     arraylist.add(4);
-    arraylist.add(-2000);
-    arraylist.add(-5000);
-    arraylist.add(-11);
-    arraylist.add(-100);
+    arraylist.add(7);
+    arraylist.add(12);
+    arraylist.add(10);
+    arraylist.add(0);
     arraylist.add(1);
     arraylist.add(1);
     arraylist.add(1);
-    System.out.println(returnMinValue(arraylist));
+    System.out.println(returnMinValueRecursive(arraylist));
+    System.out.println(returnMinValueIterative(arraylist));
 
   }
 
@@ -49,7 +50,7 @@ public class Travail2B {
 
   }
 
-  private static int returnMinValue(List<Integer> table) {
+  private static int returnMinValueRecursive(List<Integer> table) {
     if (table.size() <= 2)
       return minValue(table);
     List<Integer> firstList = extractFirstSubList(table);
@@ -57,8 +58,22 @@ public class Travail2B {
     int elementValueRight = minValue(firstList);
     int elementValueLeft = minValue(secondList);
     if (elementValueRight < elementValueLeft)
-      return returnMinValue(firstList);
+      return returnMinValueRecursive(firstList);
     else
-      return returnMinValue(secondList);
+      return returnMinValueRecursive(secondList);
+  }
+
+  public static int returnMinValueIterative(List<Integer> table) {
+    while (table.size() != 2) {
+      List<Integer> firstList = extractFirstSubList(table);
+      List<Integer> secondList = extractSecondSubList(table);
+      int elementValueRight = minValue(firstList);
+      int elementValueLeft = minValue(secondList);
+      if (elementValueRight < elementValueLeft)
+        table = firstList;
+      else
+        table = secondList;
+    }
+    return minValue(table);
   }
 }
