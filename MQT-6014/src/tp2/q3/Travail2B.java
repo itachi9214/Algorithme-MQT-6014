@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Recursive {
+public class Travail2B {
 
   private static final int INDEX_FIRST_ELEMENT = 0;
 
@@ -12,10 +12,12 @@ public class Recursive {
     ArrayList<Integer> arraylist = new ArrayList<>();
     arraylist.add(1);
     arraylist.add(2);
-    arraylist.add(3);
+    arraylist.add(-3);
     arraylist.add(4);
-    arraylist.add(5);
-    arraylist.add(0);
+    arraylist.add(-2000);
+    arraylist.add(-5000);
+    arraylist.add(-11);
+    arraylist.add(-100);
     arraylist.add(1);
     arraylist.add(1);
     arraylist.add(1);
