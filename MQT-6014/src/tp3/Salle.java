@@ -9,11 +9,17 @@ public class Salle {
   private double deviation = 0.0;
   private ArrayList<Operation> listOperations;
 
-  public double getSumOfAverage() {
+  public double getEsperance() {
     for (int i = 0; i < listOperations.size(); i++)
       sumOfAverage += listOperations.get(i).getAverage();
     return sumOfAverage;
   }
+  
+  public double getEsperanceAjout(Operation operation) {
+	    for (int i = 0; i < listOperations.size(); i++)
+	      sumOfAverage += listOperations.get(i).getAverage();
+	    return sumOfAverage + operation.getAverage();
+	  }
 
   public void setSumOfAverage(double sumOfAverage) {
     this.sumOfAverage = sumOfAverage;
@@ -36,6 +42,30 @@ public class Salle {
 
   public void setDeviation(double deviation) {
     this.deviation = deviation;
+  }
+  
+  public double getEsperanceTempsSupp(){
+	  return 0;
+  }
+  
+  public double getEsperanceTempsAjout(Operation operation){
+	  return 0;
+  }
+  
+  public double getProbabiliteTempsSupp(){
+	  return 0;
+  }
+  
+  public double getProbabiliteTempsSuppAjout(Operation operation){
+	  return 0;
+  }
+  
+  public void ajouter(Operation operation){
+	  listOperations.add(operation);
+	  sumOfAverage += operation.getAverage();
+	  sumOfVariance+= operation.getVariance();
+	  
+	  
   }
 
 }
