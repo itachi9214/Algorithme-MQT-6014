@@ -33,7 +33,7 @@ public class Operation implements Comparable<Operation> {
     return deviation;
   }
 
-  public void setDeviation(double deviation) {
+  public void setDeviation(double deviation) { 
     this.deviation = deviation;
   }
 
