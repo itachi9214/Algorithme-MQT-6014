@@ -1,5 +1,9 @@
 package tp3;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Planification {
@@ -17,8 +21,25 @@ public class Planification {
 		return salle;
 	}
 	
-	public void charger(String fileName){
+	public void charger(String fileName) throws IOException{
 		
+		if(listOfOperations != null )
+			listOfOperations.clear();
+		if(listOfSalle != null)
+			listOfSalle.clear();
+		
+		listOfOperations = new ArrayList<>();
+		listOfSalle = new ArrayList<>();
+		FileReader fileReader = new FileReader(fileName);
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		String line = bufferedReader.readLine();
+		while(line!= null){
+			String [] lines = line.split("");
+			if(lines.length==4){
+				
+			}
+		}
+			
 	}
 	
 	
