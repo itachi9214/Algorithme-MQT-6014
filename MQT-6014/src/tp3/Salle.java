@@ -3,11 +3,18 @@ package tp3;
 import java.util.ArrayList;
 
 public class Salle {
-
+	
+  private double capacity;	
+  private int identity;
   private double sumOfAverage = 0.0;
   private double sumOfVariance = 0.0;
   private double deviation = 0.0;
   private ArrayList<Operation> listOperations;
+  
+  public Salle(int identity, double capacity){
+	  this.identity = identity;
+	  this.capacity = capacity;
+  }
 
   public double getEsperance() {
     for (int i = 0; i < listOperations.size(); i++)
@@ -18,7 +25,8 @@ public class Salle {
   public double getEsperanceAjout(Operation operation) {
 	    for (int i = 0; i < listOperations.size(); i++)
 	      sumOfAverage += listOperations.get(i).getAverage();
-	    return sumOfAverage + operation.getAverage();
+	    sumOfAverage = sumOfAverage + operation.getAverage();
+	    return sumOfAverage;
 	  }
 
   public void setSumOfAverage(double sumOfAverage) {
@@ -62,10 +70,13 @@ public class Salle {
   
   public void ajouter(Operation operation){
 	  listOperations.add(operation);
-	  sumOfAverage += operation.getAverage();
-	  sumOfVariance+= operation.getVariance();
+	  sumOfAverage = getEsperanceAjout(operation);
+	  sumOfVariance = getSumOfVariance() + operation.getVariance();
 	  
-	  
+  }
+  
+  public String toString(){
+	  return "Moyenne = "+sumOfAverage+" Variance = "+sumOfVariance+" probabilites de temps supplementaire = "+getProbabiliteTempsSupp()+"Esperance de tamps supplementaire = "+getEsperanceTempsSupp(); 
   }
 
 }

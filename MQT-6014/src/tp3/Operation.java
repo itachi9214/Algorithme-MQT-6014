@@ -54,7 +54,8 @@ public class Operation implements Comparable<Operation> {
     return "Operation [identity=" + identity + ", average=" + average + ", deviation=" + deviation
         + ", roomNumber=" + roomNumber + "]";
   }
-
+  
+  /*Sort Descending Order*/ 
   @Override
   public int compareTo(Operation operation) {
     if (this.average < operation.average)
