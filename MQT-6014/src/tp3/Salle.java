@@ -64,15 +64,13 @@ public class Salle {
       return extraTime;
   }
 
-  @SuppressWarnings("deprecation")
   public double getProbabiliteTempsSupp() {
-    double probability = Gaussian.phi(capacityInHours, getEsperance(), getDeviation());
+    double probability = Gaussian.cdf(capacityInHours, getEsperance(), getDeviation());
     return 1 - probability;
   }
 
-  @SuppressWarnings("deprecation")
   public double getProbabiliteTempsSuppAjout(Operation operation) {
-    double probability = Gaussian.phi(capacityInHours, getEsperanceAjout(operation),
+    double probability = Gaussian.cdf(capacityInHours, getEsperanceAjout(operation),
         getDeviation());
     return 1 - probability;
   }
