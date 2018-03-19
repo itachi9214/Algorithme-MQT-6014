@@ -54,16 +54,27 @@ public class Salle {
       return extraTime;
   }
 
-  public double getEsperanceTempsAjout(Operation operation) {
-    return 0;
+  public double getEsperanceTempsSuppAjout(Operation operation) {
+    double extraTime = 0;
+    double extraTimeAfterAddOperation = getEsperanceAjout(operation);
+    if (capacityInHours < extraTimeAfterAddOperation) {
+      extraTime = extraTimeAfterAddOperation - capacityInHours;
+      return extraTime;
+    } else
+      return extraTime;
   }
 
+  @SuppressWarnings("deprecation")
   public double getProbabiliteTempsSupp() {
-    return 0;
+    double probability = Gaussian.phi(capacityInHours, getEsperance(), getDeviation());
+    return 1 - probability;
   }
 
+  @SuppressWarnings("deprecation")
   public double getProbabiliteTempsSuppAjout(Operation operation) {
-    return 0;
+    double probability = Gaussian.phi(capacityInHours, getEsperanceAjout(operation),
+        getDeviation());
+    return 1 - probability;
   }
 
   public void ajouter(Operation operation) {
