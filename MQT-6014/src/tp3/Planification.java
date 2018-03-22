@@ -16,13 +16,6 @@ public class Planification {
 	private ArrayList<Operation> listOfOperations;
 	private ArrayList<Salle> listOfSalle;
 	
-	public Planification(double numberOfOperations, double capacityMax, double additionnalTime, double prorbabilityMax ){
-		this.numberOfOperations = numberOfOperations;
-		this.capacityMax = capacityMax;
-		this.additionnalTime = additionnalTime;
-		this.prorbabilityMax = prorbabilityMax;
-	}
-	
 	public Salle ajouterSalle(){
 		int identity = listOfSalle.size()+1;
 		Salle salle = new Salle(identity,capacityMax);
@@ -51,7 +44,8 @@ public class Planification {
 			}else{
 				double average = Double.parseDouble(lines[0]);
 				double deviation = Double.parseDouble(lines[1]);
-				Operation operation = new Operation(listOfOperations.size(), average, deviation);
+				int identity = listOfOperations.size() + 1;
+				Operation operation = new Operation(identity, average, deviation);
 				
 				listOfOperations.add(operation);
 				bufferedReader.readLine();	
