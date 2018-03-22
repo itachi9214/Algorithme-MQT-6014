@@ -4,7 +4,7 @@ public class Test {
 
   public static void main(String[] args) {
 
-    System.out.println(Gaussian.cdf(42, 40, 1.5));
+    System.out.println(Gaussian.leftTruncatedMean(35, 3.84, 30)-30);
     // Operation op1 = new Operation(1, 2, 2);
     // Operation op2 = new Operation(4, 100, 1);
     // Operation op3 = new Operation(5, 8, 2);

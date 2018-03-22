@@ -1,7 +1,6 @@
 package tp3;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,12 +21,8 @@ public class Planification {
 	}
 	
 	public void charger(String fileName) throws IOException{
-		
-		if(listOfOperations != null )
-			listOfOperations.clear();
-		if(listOfSalle != null)
-			listOfSalle.clear();
-		
+		listOfOperations.clear();
+		listOfSalle.clear();
 		listOfOperations = new ArrayList<>();
 		listOfSalle = new ArrayList<>();
 		FileReader fileReader = new FileReader(fileName);
@@ -40,6 +35,13 @@ public class Planification {
 			}
 		}
 			
+	}
+	
+	public double getTotalTempsSupp(){
+		double TSE = 0;
+		for (int i = 0;i<listOfSalle.size();i++)
+			TSE = TSE + listOfSalle.get(i).getEsperanceTempsSupp()*listOfSalle.get(i).getProbabiliteTempsSupp();
+		return TSE;
 	}
 	
 	

@@ -46,22 +46,14 @@ public class Salle {
   }
 
   public double getEsperanceTempsSupp() {
-    double extraTime = 0;
-    if (capacityInHours < sumOfAverage) {
-      extraTime = sumOfAverage - capacityInHours;
-      return extraTime;
-    } else
-      return extraTime;
+    double extraTime = Gaussian.leftTruncatedMean(sumOfAverage, getDeviation(), capacityInHours) - capacityInHours;
+    return extraTime;
   }
 
   public double getEsperanceTempsSuppAjout(Operation operation) {
-    double extraTime = 0;
-    double extraTimeAfterAddOperation = getEsperanceAjout(operation);
-    if (capacityInHours < extraTimeAfterAddOperation) {
-      extraTime = extraTimeAfterAddOperation - capacityInHours;
-      return extraTime;
-    } else
-      return extraTime;
+    double expectationAfterAddOperation = getEsperanceAjout(operation);
+    double extraTime = Gaussian.leftTruncatedMean(expectationAfterAddOperation, getDeviation(), capacityInHours)- capacityInHours ;
+    return extraTime;
   }
 
   public double getProbabiliteTempsSupp() {
