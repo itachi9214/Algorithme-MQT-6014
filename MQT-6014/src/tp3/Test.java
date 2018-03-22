@@ -1,10 +1,16 @@
 package tp3;
 
+import java.util.ArrayList;
+
 public class Test {
 
   public static void main(String[] args) {
+	  
+	  ArrayList<Object> object = new ArrayList<>();
+	  object.clear();
+	  System.out.println(object.size());
 
-    System.out.println(Gaussian.leftTruncatedMean(35, 3.84, 30)-30);
+    //System.out.println(Gaussian.leftTruncatedMean(35, 3.84, 30)-30);
     // Operation op1 = new Operation(1, 2, 2);
     // Operation op2 = new Operation(4, 100, 1);
     // Operation op3 = new Operation(5, 8, 2);

@@ -7,15 +7,25 @@ import java.util.ArrayList;
 
 public class Planification {
 	
-	private double PorbabilityMax;
-	private double capacity;
-	private double additionnalTIme;
+	
+	
+	private double prorbabilityMax;
+	private double capacityMax;
+	private double additionnalTime;
+	private double numberOfOperations;
 	private ArrayList<Operation> listOfOperations;
 	private ArrayList<Salle> listOfSalle;
 	
+	public Planification(double numberOfOperations, double capacityMax, double additionnalTime, double prorbabilityMax ){
+		this.numberOfOperations = numberOfOperations;
+		this.capacityMax = capacityMax;
+		this.additionnalTime = additionnalTime;
+		this.prorbabilityMax = prorbabilityMax;
+	}
+	
 	public Salle ajouterSalle(){
 		int identity = listOfSalle.size()+1;
-		Salle salle = new Salle(identity,capacity);
+		Salle salle = new Salle(identity,capacityMax);
 		listOfSalle.add(salle);
 		return salle;
 	}
@@ -24,17 +34,30 @@ public class Planification {
 		listOfOperations.clear();
 		listOfSalle.clear();
 		listOfOperations = new ArrayList<>();
-		listOfSalle = new ArrayList<>();
+		BufferedReader bufferedReader;
 		FileReader fileReader = new FileReader(fileName);
-		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		bufferedReader = new BufferedReader(fileReader);
 		String line = bufferedReader.readLine();
+		boolean firstLine = true;
 		while(line!= null){
 			String [] lines = line.split("");
-			if(lines.length==4){
+			if(firstLine){
+				numberOfOperations = Double.parseDouble(lines[0]);
+				capacityMax = Double.parseDouble(lines[1]);
+				additionnalTime = Double.parseDouble(lines[2]);
+				prorbabilityMax = Double.parseDouble(lines[3]);
+				firstLine = false;
+				bufferedReader.readLine();
+			}else{
+				double average = Double.parseDouble(lines[0]);
+				double deviation = Double.parseDouble(lines[1]);
+				Operation operation = new Operation(listOfOperations.size(), average, deviation);
 				
+				listOfOperations.add(operation);
+				bufferedReader.readLine();	
 			}
 		}
-			
+		bufferedReader.close();	
 	}
 	
 	public double getTotalTempsSupp(){

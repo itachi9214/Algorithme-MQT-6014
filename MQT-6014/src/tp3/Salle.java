@@ -73,6 +73,7 @@ public class Salle {
     sumOfVariance = getSumOfVariance() + operation.getVariance();
 
   }
+  
 
   public String toString() {
     return "Moyenne = " + sumOfAverage + " Variance = " + sumOfVariance
