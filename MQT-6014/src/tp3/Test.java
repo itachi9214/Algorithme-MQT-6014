@@ -1,33 +1,15 @@
 package tp3;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 public class Test {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
 	  
-	  ArrayList<Object> object = new ArrayList<>();
-	  object.clear();
-	  System.out.println(object.size());
-
-    //System.out.println(Gaussian.leftTruncatedMean(35, 3.84, 30)-30);
-    // Operation op1 = new Operation(1, 2, 2);
-    // Operation op2 = new Operation(4, 100, 1);
-    // Operation op3 = new Operation(5, 8, 2);
-    // Operation op4 = new Operation(7, 3, 2);
-    // Operation op5 = new Operation(9, 3, 0);
-    // ArrayList<Operation> listOperation = new ArrayList<Operation>();
-    // listOperation.add(op5);
-    // listOperation.add(op2);
-    // listOperation.add(op1);
-    // listOperation.add(op4);
-    // listOperation.add(op3);
-    //
-    //
-    // //Collections.sort(listOperation);
-    //
-    // for (int i = 0; i < listOperation.size(); i++)
-    // System.out.println(listOperation.get(i).toString());
+	  Planification p1 = new Planification();
+      p1.charger("/operations1.txt");
+      p1.affecter();
+      System.out.println(p1);
 
   }
 

@@ -78,7 +78,7 @@ public class Salle {
   public String toString() {
     return "Moyenne = " + sumOfAverage + " Variance = " + sumOfVariance
         + " probabilites de temps supplementaire = " + getProbabiliteTempsSupp()
-        + "Esperance de temps supplementaire = " + getEsperanceTempsSupp();
+        + "Esperance de temps supplementaire = " + getEsperanceTempsSupp()+"\n";
   }
 
 }

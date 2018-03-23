@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Planification {
 	
@@ -24,8 +25,10 @@ public class Planification {
 	}
 	
 	public void charger(String fileName) throws IOException{
-		listOfOperations.clear();
-		listOfSalle.clear();
+		if(listOfOperations!=null)
+			listOfOperations.clear();
+		if(listOfSalle!=null)
+			listOfSalle.clear();
 		listOfOperations = new ArrayList<>();
 		BufferedReader bufferedReader;
 		FileReader fileReader = new FileReader(fileName);
@@ -33,7 +36,7 @@ public class Planification {
 		String line = bufferedReader.readLine();
 		boolean firstLine = true;
 		while(line!= null){
-			String [] lines = line.split("");
+			String [] lines = line.split(" ");
 			if(firstLine){
 				numberOfOperations = Double.parseDouble(lines[0]);
 				capacityMax = Double.parseDouble(lines[1]);
@@ -54,6 +57,11 @@ public class Planification {
 		bufferedReader.close();	
 	}
 	
+	public void viewRoomList(){
+		for(int i = 0; i < listOfSalle.size(); i++)
+			listOfSalle.get(i).toString();
+	}
+	
 	public double getTotalTempsSupp(){
 		double TSE = 0;
 		for (int i = 0;i<listOfSalle.size();i++)
@@ -61,5 +69,41 @@ public class Planification {
 		return TSE;
 	}
 	
+	public double getProbabiliteTempsSupp(){
+		return 0;
+	}
 	
+	public String toString (){
+		viewRoomList();
+		return "Nombre de salle: "+listOfSalle.size()+" Esperance du temps Supplementaire: "+getTotalTempsSupp()+" Probabilite du temps supplemenetaire: "+getProbabiliteTempsSupp();
+	}
+	
+	public void affecter (){
+		double meilleur_cout;
+		Salle meilleure_salle;
+		double cout;
+		double probabilityExtraTimeAdded;
+		double expectationAdded;
+		double maximalTime = capacityMax+additionnalTime;
+		if(listOfSalle!=null)
+			listOfSalle.clear();
+		Collections.sort(listOfOperations);
+		for(int i = 0; i < listOfOperations.size(); i++){
+			meilleur_cout = Double.MAX_VALUE;
+			meilleure_salle = null;
+			for(int j = 0; j < listOfSalle.size(); j++){
+				cout = listOfSalle.get(i).getEsperanceTempsSuppAjout(listOfOperations.get(i));
+				probabilityExtraTimeAdded = listOfSalle.get(i).getProbabiliteTempsSuppAjout(listOfOperations.get(i));
+				expectationAdded = listOfSalle.get(i).getEsperanceAjout(listOfOperations.get(i));
+				
+				if((cout < meilleur_cout)&&(probabilityExtraTimeAdded < prorbabilityMax)&&(expectationAdded < maximalTime)){
+					meilleur_cout = cout;
+					meilleure_salle = listOfSalle.get(j);
+				}
+			}
+			if(meilleure_salle == null)
+				meilleure_salle = ajouterSalle();
+			meilleure_salle.ajouter(listOfOperations.get(i));
+		}
+	}
 }
