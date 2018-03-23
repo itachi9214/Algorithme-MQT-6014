@@ -17,6 +17,11 @@ public class Planification {
 	private ArrayList<Operation> listOfOperations;
 	private ArrayList<Salle> listOfSalle;
 	
+	public Planification(){
+		listOfOperations = new ArrayList<>();
+		listOfSalle = new ArrayList<>();
+	}
+	
 	public Salle ajouterSalle(){
 		int identity = listOfSalle.size()+1;
 		Salle salle = new Salle(identity,capacityMax);
@@ -33,8 +38,9 @@ public class Planification {
 		BufferedReader bufferedReader;
 		FileReader fileReader = new FileReader(fileName);
 		bufferedReader = new BufferedReader(fileReader);
-		String line = bufferedReader.readLine();
 		boolean firstLine = true;
+		String line = bufferedReader.readLine();
+		
 		while(line!= null){
 			String [] lines = line.split(" ");
 			if(firstLine){
@@ -43,16 +49,14 @@ public class Planification {
 				additionnalTime = Double.parseDouble(lines[2]);
 				prorbabilityMax = Double.parseDouble(lines[3]);
 				firstLine = false;
-				bufferedReader.readLine();
 			}else{
 				double average = Double.parseDouble(lines[0]);
 				double deviation = Double.parseDouble(lines[1]);
 				int identity = listOfOperations.size() + 1;
 				Operation operation = new Operation(identity, average, deviation);
-				
 				listOfOperations.add(operation);
-				bufferedReader.readLine();	
 			}
+			line = bufferedReader.readLine();	
 		}
 		bufferedReader.close();	
 	}
@@ -74,13 +78,13 @@ public class Planification {
 	}
 	
 	public String toString (){
-		viewRoomList();
-		return "Nombre de salle: "+listOfSalle.size()+" Esperance du temps Supplementaire: "+getTotalTempsSupp()+" Probabilite du temps supplemenetaire: "+getProbabiliteTempsSupp();
+		
+		return "Nombre de salle: "+listOfSalle.size()+" Esperance du temps Supplementaire: "+getTotalTempsSupp()+" Probabilite du temps supplementaire: "+getProbabiliteTempsSupp()+" "+listOfSalle;
 	}
 	
 	public void affecter (){
 		double meilleur_cout;
-		Salle meilleure_salle;
+		Salle meilleure_salle ;
 		double cout;
 		double probabilityExtraTimeAdded;
 		double expectationAdded;
@@ -92,9 +96,9 @@ public class Planification {
 			meilleur_cout = Double.MAX_VALUE;
 			meilleure_salle = null;
 			for(int j = 0; j < listOfSalle.size(); j++){
-				cout = listOfSalle.get(i).getEsperanceTempsSuppAjout(listOfOperations.get(i));
-				probabilityExtraTimeAdded = listOfSalle.get(i).getProbabiliteTempsSuppAjout(listOfOperations.get(i));
-				expectationAdded = listOfSalle.get(i).getEsperanceAjout(listOfOperations.get(i));
+				cout = listOfSalle.get(j).getEsperanceTempsSuppAjout(listOfOperations.get(i));
+				probabilityExtraTimeAdded = listOfSalle.get(j).getProbabiliteTempsSuppAjout(listOfOperations.get(i));
+				expectationAdded = listOfSalle.get(j).getEsperanceAjout(listOfOperations.get(i));
 				
 				if((cout < meilleur_cout)&&(probabilityExtraTimeAdded < prorbabilityMax)&&(expectationAdded < maximalTime)){
 					meilleur_cout = cout;

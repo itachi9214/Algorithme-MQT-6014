@@ -12,6 +12,7 @@ public class Salle {
   private ArrayList<Operation> listOperations;
 
   public Salle(int identity, double capacityInHours) {
+	this.listOperations = new ArrayList<>();
     this.identity = identity;
     this.capacityInHours = capacityInHours;
   }
@@ -46,13 +47,17 @@ public class Salle {
   }
 
   public double getEsperanceTempsSupp() {
-    double extraTime = Gaussian.leftTruncatedMean(sumOfAverage, getDeviation(), capacityInHours) - capacityInHours;
+	double extraTime = 0;
+	if(capacityInHours<sumOfAverage)
+		extraTime = Gaussian.leftTruncatedMean(sumOfAverage, getDeviation(), capacityInHours) - capacityInHours;
     return extraTime;
   }
 
   public double getEsperanceTempsSuppAjout(Operation operation) {
+	double extraTime = 0;  
     double expectationAfterAddOperation = getEsperanceAjout(operation);
-    double extraTime = Gaussian.leftTruncatedMean(expectationAfterAddOperation, getDeviation(), capacityInHours)- capacityInHours ;
+    if(capacityInHours < expectationAfterAddOperation)
+    	extraTime = Gaussian.leftTruncatedMean(expectationAfterAddOperation, getDeviation(), capacityInHours)- capacityInHours ;
     return extraTime;
   }
 
