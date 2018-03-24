@@ -33,7 +33,7 @@ public class Operation implements Comparable<Operation> {
     return deviation;
   }
 
-  public void setDeviation(double deviation) { 
+  public void setDeviation(double deviation) {
     this.deviation = deviation;
   }
 
@@ -52,10 +52,10 @@ public class Operation implements Comparable<Operation> {
   @Override
   public String toString() {
     return "Operation [identity=" + identity + ", average=" + average + ", deviation=" + deviation
-        + ", roomNumber=" + roomNumber + "]";
+        + ", roomNumber=" + roomNumber + "]\n";
   }
-  
-  /*Sort Descending Order*/ 
+
+  /* Sort Descending Order */
   @Override
   public int compareTo(Operation operation) {
     if (this.average < operation.average)

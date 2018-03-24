@@ -1,18 +1,24 @@
 package tp3;
 
-import java.io.File;
 import java.io.IOException;
 
 public class Test {
 
   public static void main(String[] args) throws IOException {
-	  
-	  Planification p1 = new Planification();
-      p1.charger("C:/Users/SSDIA3/Desktop/TP3/MQT-6014-H18_Travail 3/operations2.txt");
-	  //File fichi = new File("");
-	  //System.out.println(fichi.exists());
-     p1.affecter();
-     System.out.println(p1.toString());
+
+    Planification p1 = new Planification();
+    p1.charger("src/tp3/operations2.txt");
+
+    // System.out.println(fichi.exists());
+    p1.affecter();
+    // Operation o1 = new Operation(1, 9, 3);
+    // Operation o2 = new Operation(2, 1, 1);
+    //
+    // s.ajouter(o2);
+    // s.ajouter(o1);
+    // System.out.println(s.getEsperance());
+
+    System.out.println(p1.toString());
 
   }
 

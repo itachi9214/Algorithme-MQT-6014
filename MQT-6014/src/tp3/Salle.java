@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 public class Salle {
 
-  private double capacityInHours;
+  private double capacityMax;
   private int identity;
   private double sumOfAverage = 0.0;
   private double sumOfVariance = 0.0;
   private double deviation = 0.0;
   private ArrayList<Operation> listOperations;
 
-  public Salle(int identity, double capacityInHours) {
-	this.listOperations = new ArrayList<>();
+  public Salle(int identity, double capacityMax) {
+    this.listOperations = new ArrayList<>();
     this.identity = identity;
-    this.capacityInHours = capacityInHours;
+    this.capacityMax = capacityMax;
   }
 
   public double getEsperance() {
@@ -47,28 +47,29 @@ public class Salle {
   }
 
   public double getEsperanceTempsSupp() {
-	double extraTime = 0;
-	if(capacityInHours<sumOfAverage)
-		extraTime = Gaussian.leftTruncatedMean(sumOfAverage, getDeviation(), capacityInHours) - capacityInHours;
+    double extraTime = 0;
+    if (capacityMax < sumOfAverage)
+      extraTime = Gaussian.leftTruncatedMean(sumOfAverage, getDeviation(), capacityMax)
+          - capacityMax;
     return extraTime;
   }
 
   public double getEsperanceTempsSuppAjout(Operation operation) {
-	double extraTime = 0;  
+    double extraTime = 0;
     double expectationAfterAddOperation = getEsperanceAjout(operation);
-    if(capacityInHours < expectationAfterAddOperation)
-    	extraTime = Gaussian.leftTruncatedMean(expectationAfterAddOperation, getDeviation(), capacityInHours)- capacityInHours ;
+    if (capacityMax < expectationAfterAddOperation)
+      extraTime = Gaussian.leftTruncatedMean(expectationAfterAddOperation, getDeviation(),
+          capacityMax) - capacityMax;
     return extraTime;
   }
 
   public double getProbabiliteTempsSupp() {
-    double probability = Gaussian.cdf(capacityInHours, getEsperance(), getDeviation());
+    double probability = Gaussian.cdf(capacityMax, getEsperance(), getDeviation());
     return 1 - probability;
   }
 
   public double getProbabiliteTempsSuppAjout(Operation operation) {
-    double probability = Gaussian.cdf(capacityInHours, getEsperanceAjout(operation),
-        getDeviation());
+    double probability = Gaussian.cdf(capacityMax, getEsperanceAjout(operation), getDeviation());
     return 1 - probability;
   }
 
@@ -78,12 +79,11 @@ public class Salle {
     sumOfVariance = getSumOfVariance() + operation.getVariance();
 
   }
-  
 
   public String toString() {
-    return "Moyenne = " + sumOfAverage + " Variance = " + sumOfVariance
+    return "[Salle : Moyenne = " + sumOfAverage + " Variance = " + sumOfVariance
         + " probabilites de temps supplementaire = " + getProbabiliteTempsSupp()
-        + "Esperance de temps supplementaire = " + getEsperanceTempsSupp()+"\n";
+        + " Esperance de temps supplementaire = " + getEsperanceTempsSupp() + " ]\n";
   }
 
 }
