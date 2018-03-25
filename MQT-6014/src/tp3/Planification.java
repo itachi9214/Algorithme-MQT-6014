@@ -70,14 +70,17 @@ public class Planification {
   }
 
   public double getProbabiliteTempsSupp() {
-    return 0;
+    double produit = 1;
+    for (int i = 0; i < listOfSalle.size(); i++)
+      produit *= (1 - listOfSalle.get(i).getProbabiliteTempsSupp());
+    return 1 - produit;
   }
 
   public String toString() {
 
     return "Nombre de salle: " + listOfSalle.size() + " Esperance du temps Supplementaire: "
-        + getTotalTempsSupp() + " Probabilite du temps supplementaire: " + getProbabiliteTempsSupp()
-        + "\n " + listOfSalle;
+        + getTotalTempsSupp() + " Probabilite du temps supplementaire au moins une salle: "
+        + getProbabiliteTempsSupp() + "\n " + listOfSalle;
   }
 
   public void affecter() {
@@ -86,6 +89,7 @@ public class Planification {
     double cout;
     double probabilityExtraTimeAdded;
     double expectationAdded;
+    double tempsSupp;
     if (listOfSalle != null)
       listOfSalle.clear();
     Collections.sort(listOfOperations);
@@ -97,9 +101,9 @@ public class Planification {
         probabilityExtraTimeAdded = listOfSalle.get(j)
             .getProbabiliteTempsSuppAjout(listOfOperations.get(i));
         expectationAdded = listOfSalle.get(j).getEsperanceAjout(listOfOperations.get(i));
-
+        tempsSupp = listOfSalle.get(j).getEsperanceTempsSupp();
         if ((cout < meilleur_cout) && (probabilityExtraTimeAdded < prorbabilityMax)
-            && (expectationAdded < capacityMax)) {
+            && (expectationAdded < capacityMax) && (cout < additionnalTime)) {
           meilleur_cout = cout;
           meilleure_salle = listOfSalle.get(j);
         }

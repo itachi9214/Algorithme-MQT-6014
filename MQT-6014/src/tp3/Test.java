@@ -7,7 +7,7 @@ public class Test {
   public static void main(String[] args) throws IOException {
 
     Planification p1 = new Planification();
-    p1.charger("src/tp3/operations2.txt");
+    p1.charger("src/tp3/operations1.txt");
 
     // System.out.println(fichi.exists());
     p1.affecter();
