@@ -57,8 +57,10 @@ public class Salle {
   public double getEsperanceTempsSuppAjout(Operation operation) {
     double extraTime = 0;
     double expectationAfterAddOperation = getEsperanceAjout(operation);
+    double variance = getSumOfVariance() + operation.getVariance();
+	double deviation = Math.sqrt(variance);
     if (capacityMax < expectationAfterAddOperation)
-      extraTime = Gaussian.leftTruncatedMean(expectationAfterAddOperation, getDeviation(),
+      extraTime = Gaussian.leftTruncatedMean(expectationAfterAddOperation, deviation,
           capacityMax) - capacityMax;
     return extraTime;
   }
@@ -69,7 +71,9 @@ public class Salle {
   }
 
   public double getProbabiliteTempsSuppAjout(Operation operation) {
-    double probability = Gaussian.cdf(capacityMax, getEsperanceAjout(operation), getDeviation());
+	double variance = getSumOfVariance() + operation.getVariance();
+	double deviation = Math.sqrt(variance);
+    double probability = Gaussian.cdf(capacityMax, getEsperanceAjout(operation), deviation);
     return 1 - probability;
   }
 

@@ -2,12 +2,12 @@ package tp3;
 
 import java.io.IOException;
 
-public class Test {
+public class Travail3_Serigne_Saliou_Mbacke_Diakhate {
 
   public static void main(String[] args) throws IOException {
 
     Planification p1 = new Planification();
-    p1.charger("src/tp3/operations1.txt");
+    p1.charger("src/tp3/operations2.txt");
 
     // System.out.println(fichi.exists());
     p1.affecter();
