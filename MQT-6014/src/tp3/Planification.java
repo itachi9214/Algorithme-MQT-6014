@@ -100,8 +100,8 @@ public class Planification {
         probabilityExtraTimeAdded = listOfSalle.get(j)
             .getProbabiliteTempsSuppAjout(listOfOperations.get(i));
         expectationAdded = listOfSalle.get(j).getEsperanceAjout(listOfOperations.get(i));
-        if ((cout < meilleur_cout) && (probabilityExtraTimeAdded < prorbabilityMax)
-            && (expectationAdded < capacityMax) && (cout < additionnalTime)) {
+        if ((cout < meilleur_cout) && (probabilityExtraTimeAdded <= prorbabilityMax)
+             && (cout <= additionnalTime) || (expectationAdded <= capacityMax)) {
           meilleur_cout = cout;
           meilleure_salle = listOfSalle.get(j);
         }
