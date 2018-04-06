@@ -8,6 +8,8 @@ public class main {
 
   public static void main(String[] args) throws Exception {
     IGraphe g = Charger("src/tp4/rome99.gr");
+    DeuxChemins deux = new DeuxChemins(g);
+    deux.Recherche(179, 2920);
 
   }
 
@@ -38,7 +40,7 @@ public class main {
       line = bufferedReader.readLine();
     }
     bufferedReader.close();
-    System.out.println(graphe.Existe(179, 2920));
+    System.out.println(graphe.Existe(2958, 2959));
     return graphe;
   }
 

@@ -8,10 +8,10 @@ public class GrapheListe implements IGraphe {
   private ArrayList<ListeChainee<Arc>> arcs;
 
   public GrapheListe(int noeuds, boolean dir) {
-    nbnoeuds = noeuds;
+    nbnoeuds = noeuds + 1;
     est_dirige = dir;
     arcs = new ArrayList<ListeChainee<Arc>>();
-    for (int i = 0; i <= nbnoeuds; i++)
+    for (int i = 0; i < nbnoeuds; i++)
       arcs.add(new ListeChainee<Arc>());
   }
 
