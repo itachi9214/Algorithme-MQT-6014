@@ -40,7 +40,6 @@ public class main {
       line = bufferedReader.readLine();
     }
     bufferedReader.close();
-    System.out.println(graphe.Existe(2958, 2959));
     return graphe;
   }
 
