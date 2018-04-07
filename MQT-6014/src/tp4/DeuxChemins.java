@@ -41,21 +41,22 @@ public class DeuxChemins {
             file_priorite.Decroitre(a.vers, distance[a.vers]);
           parent[a.vers] = v;
         }
-        if(parent[a.vers] >= 0 && g.Existe(a.vers, parent[a.vers])==true && (g.TrouverArc(a.vers, parent[a.vers])!=a && g.TrouverArc(a.vers, parent[a.vers])!=null) )
-        	System.out.println(parent[a.vers]);
+//        if(parent[a.vers] >= 0 && g.Existe(a.vers, parent[a.vers])==true && (g.TrouverArc(a.vers, parent[a.vers])!=a && g.TrouverArc(a.vers, parent[a.vers])!=null) )
+//        	System.out.println(a.vers);
         
         }
       
         }
-//    for(int i = 0; i<g.NbNoeuds();i++){
-//        if(parent[i] >= 0){
-//        	System.out.println(g.TrouverArc(i, parent[i]));
-//        	
-//        	//chemin.Ajouter(g.TrouverArc(a.vers, parent[a.vers]));
-//
-//      }
+    for(int i = 178; i<2921;i++){
+        if(parent[i] >= 0){
+        	System.out.println( parent[i]);
+        	
+        	//chemin.Ajouter(g.TrouverArc(a.vers, parent[a.vers]));
 
-    //}
+      }
+
+   }
+    
     return chemin;
   }
 }
