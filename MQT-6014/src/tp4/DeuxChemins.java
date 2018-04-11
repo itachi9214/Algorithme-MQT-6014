@@ -27,8 +27,8 @@ public class DeuxChemins {
     Chemin chemin = new Chemin();
     Init();
     parent[s] = -2;
-    distance[s] = 0;
-    file_priorite.Ajouter(s, t);
+    distance[s] = t;
+    file_priorite.Ajouter(s,t);
     while (!file_priorite.EstVide()) {
       int v = file_priorite.SupprimerMin();
 
@@ -47,15 +47,21 @@ public class DeuxChemins {
         }
       
         }
+    IGraphe T = new GrapheListe(g.NbNoeuds(), true);
     for(int i = 178; i<2921;i++){
-        if(parent[i] >= 0){
-        	System.out.println( parent[i]);
+    	
+        if(parent[i]>=0) {
         	
-        	//chemin.Ajouter(g.TrouverArc(a.vers, parent[a.vers]));
-
-      }
-
+        	if(g.TrouverArc(i, parent[i])!=null ) {
+        			T.Ajouter(g.TrouverArc(i, parent[i]));
+        			
+        	}
+        	
+    
+        }
+       
    }
+    System.out.println(T);
     
     return chemin;
   }
