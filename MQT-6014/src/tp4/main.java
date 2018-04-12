@@ -9,7 +9,7 @@ public class main {
   public static void main(String[] args) throws Exception {
     IGraphe g = Charger("src/tp4/rome99.gr");
     DeuxChemins deux = new DeuxChemins(g);
-    deux.Recherche(179, 2920);
+    System.out.println(deux.Recherche(2915, 10));
 
   }
 

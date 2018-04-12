@@ -27,41 +27,30 @@ public class DeuxChemins {
     Chemin chemin = new Chemin();
     Init();
     parent[s] = -2;
-    distance[s] = t;
-    file_priorite.Ajouter(s,t);
+    distance[s] = 0;
+    file_priorite.Ajouter(s,0);
     while (!file_priorite.EstVide()) {
       int v = file_priorite.SupprimerMin();
 
-      for (Arc a : g.Adjacents(v)) {
+      for (Arc a : g.Adjacents(v)) 
         if (distance[v] + a.cout < distance[a.vers]) {
           distance[a.vers] = distance[v] + a.cout;
           if (parent[a.vers] == -1)
             file_priorite.Ajouter(a.vers, distance[a.vers]);
           else
             file_priorite.Decroitre(a.vers, distance[a.vers]);
-          parent[a.vers] = v;
-        }
-//        if(parent[a.vers] >= 0 && g.Existe(a.vers, parent[a.vers])==true && (g.TrouverArc(a.vers, parent[a.vers])!=a && g.TrouverArc(a.vers, parent[a.vers])!=null) )
-//        	System.out.println(a.vers);
-        
+        parent[a.vers] = v;
+        	if(parent[a.de]>=0 && parent[a.vers]>=0 ){
+        		if(chemin.chemin.contains(parent[a.de])==false)
+        			chemin.Ajouter(parent[a.de]);
+        		if(chemin.chemin.contains(parent[a.vers])==false)
+        			chemin.Ajouter(parent[a.vers]);
+        	}
+        	
         }
       
         }
-    IGraphe T = new GrapheListe(g.NbNoeuds(), true);
-    for(int i = 178; i<2921;i++){
-    	
-        if(parent[i]>=0) {
-        	
-        	if(g.TrouverArc(i, parent[i])!=null ) {
-        			T.Ajouter(g.TrouverArc(i, parent[i]));
-        			
-        	}
-        	
     
-        }
-       
-   }
-    System.out.println(T);
     
     return chemin;
   }

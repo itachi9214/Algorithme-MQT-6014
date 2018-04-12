@@ -19,6 +19,11 @@ public class ListeChainee<Item> implements Iterable<Item> {
     n.suivant = tete;
     tete = n;
   }
+  
+  public void Retirer(Item item){
+	  Node<Item> n = new Node<Item>(item);
+	  
+  }
 
   @Override
   public Iterator<Item> iterator() {
