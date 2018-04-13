@@ -1,5 +1,10 @@
 package tp4;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.PriorityQueue;
+
 // Cet objet permet de trouver le nombre de composantes connexes dans un graphe
 public class DeuxChemins {
   IGraphe g;
@@ -23,35 +28,49 @@ public class DeuxChemins {
   }
 
   // retourne deux chemins differents entre s et t
-  public Chemin Recherche(int s, int t) {
-    Chemin chemin = new Chemin();
+  public ArrayList<Chemin> Recherche(int s, int t) {
+	  double cout_total = 0 ;
+	  PriorityQueue<Integer> vertexQueue = new PriorityQueue<Integer>();
+	  ArrayList<Chemin> path = new ArrayList<Chemin>();
+	  Chemin chemin = new Chemin();
     Init();
     parent[s] = -2;
     distance[s] = 0;
-    file_priorite.Ajouter(s,0);
-    while (!file_priorite.EstVide()) {
-      int v = file_priorite.SupprimerMin();
+    //file_priorite.Ajouter(s,0);
+    vertexQueue.add(s);
+    while (!vertexQueue.isEmpty()) {
+      int v = vertexQueue.poll();
 
-      for (Arc a : g.Adjacents(v)) 
-        if (distance[v] + a.cout < distance[a.vers]) {
-          distance[a.vers] = distance[v] + a.cout;
-          if (parent[a.vers] == -1)
-            file_priorite.Ajouter(a.vers, distance[a.vers]);
-          else
-            file_priorite.Decroitre(a.vers, distance[a.vers]);
-        parent[a.vers] = v;
-        	if(parent[a.de]>=0 && parent[a.vers]>=0 ){
-        		if(chemin.chemin.contains(parent[a.de])==false)
-        			chemin.Ajouter(parent[a.de]);
-        		if(chemin.chemin.contains(parent[a.vers])==false)
-        			chemin.Ajouter(parent[a.vers]);
+      for (Arc a : g.Adjacents(v)) {
+    	  int sommet = a.vers;
+    	  int poids = a.cout;
+    	  int distanceParcouru = distance[v]+poids;
+        if (distanceParcouru< distance[a.vers]) {
+         
+        	vertexQueue.remove(sommet);
+        	distance[a.vers]=distanceParcouru;
+        	parent[a.vers] = v;
+        	vertexQueue.add(sommet);
+        	//chemin.Ajouter(sommet);
+        	
         	}
         	
         }
-      
-        }
+    }
+    for(int i=t;i>=0;i=parent[i]) {
+    	chemin.Ajouter(i);
+    }
     
-    
-    return chemin;
-  }
+    Collections.reverse(chemin.chemin);
+   
+    for(int i = 0;i<chemin.chemin.size()-1;i++) {
+    	Arc a = g.TrouverArc(chemin.chemin.get(i),chemin.chemin.get(i+1));
+    			cout_total+=a.cout;
+    }
+    chemin.SetCout(cout_total);
+  path.add(chemin);
+  
+   
+    return path;
+   }
 }
