@@ -40,6 +40,11 @@ public class GrapheListe implements IGraphe {
 	  //arcs.remove(a.vers);
 	  arcs.remove(a.de);
 	  nbarcs--;
+	  a.cout=0;
+	  this.Adjacents(a.de).iterator().next().vers=Integer.MAX_VALUE;
+	  if(!this.Existe(a.de, a.vers) && !this.Existe(a.vers, a.de) )
+		  nbnoeuds--;
+		  
   }
 
   // retour vrai si l'arc de i a j existe
@@ -105,7 +110,7 @@ public class GrapheListe implements IGraphe {
     g.Retirer(c);
     g.Retirer(d);
     
-    for (int i = 0; i < 5
+    for (int i = 0; i < g.nbnoeuds
     		; i++) {
       System.out.print("Noeud : " + i + " arcs : ");
       for (Arc a : g.Adjacents(i))
