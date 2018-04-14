@@ -37,7 +37,9 @@ public class GrapheListe implements IGraphe {
   }
 
   public void Retirer(Arc a) {
-    new UnsupportedOperationException("La methode doit etre implementee");
+	  //arcs.remove(a.vers);
+	  arcs.remove(a.de);
+	  nbarcs--;
   }
 
   // retour vrai si l'arc de i a j existe
@@ -71,21 +73,40 @@ public class GrapheListe implements IGraphe {
 
   public static void main(String[] args) {
     GrapheListe g = new GrapheListe(7, true);
-    g.Ajouter(new Arc(0, 1));
-    g.Ajouter(new Arc(0, 2));
-    g.Ajouter(new Arc(0, 3));
-    g.Ajouter(new Arc(1, 2));
-    g.Ajouter(new Arc(1, 5));
-    g.Ajouter(new Arc(2, 3));
-    g.Ajouter(new Arc(2, 5));
-    g.Ajouter(new Arc(3, 0));
-    g.Ajouter(new Arc(3, 2));
-    g.Ajouter(new Arc(3, 4));
-    g.Ajouter(new Arc(4, 3));
-    g.Ajouter(new Arc(4, 5));
-    g.Ajouter(new Arc(5, 6));
-    g.Ajouter(new Arc(6, 4));
-    for (int i = 0; i < 7; i++) {
+    Arc b = new Arc(0, 1);
+    Arc c = new Arc(0, 2);
+    Arc d = new Arc (0, 3);
+    g.Ajouter(b);
+    g.Ajouter(c);
+    g.Ajouter(d);
+    Arc e = new Arc(1, 2);
+	g.Ajouter(e);
+    Arc f = new Arc(1, 5);
+	g.Ajouter(f);
+    Arc h = new Arc(2, 3);
+	g.Ajouter(h);
+    Arc x = new Arc(2, 5);
+	g.Ajouter(x);
+    Arc j = new Arc(3, 0);
+	g.Ajouter(j);
+    Arc k = new Arc(3, 2);
+	g.Ajouter(k);
+    Arc l = new Arc(3, 4);
+	g.Ajouter(l);
+    Arc m = new Arc(4, 3);
+	g.Ajouter(m);
+    Arc n = new Arc(4, 5);
+	g.Ajouter(n);
+    Arc o = new Arc(5, 6);
+	g.Ajouter(o);
+    Arc p = new Arc(6, 4);
+	g.Ajouter(p);
+    g.Retirer(b);
+    g.Retirer(c);
+    g.Retirer(d);
+    
+    for (int i = 0; i < 5
+    		; i++) {
       System.out.print("Noeud : " + i + " arcs : ");
       for (Arc a : g.Adjacents(i))
         System.out.print(a.vers + " ");
