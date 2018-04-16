@@ -9,10 +9,7 @@ public class main {
   public static void main(String[] args) throws Exception {
     IGraphe g = Charger("src/tp4/rome99.gr");
     DeuxChemins deux = new DeuxChemins(g);
-    System.out.println(deux.Recherche(1, 10));
-    g.Retirer(g.TrouverArc(1, 22));
-    System.out.println(deux.Recherche(1, 10));
-
+    System.out.println(deux.Recherche(179,2920));
   }
 
   public static IGraphe Charger(String nom_fichier) throws Exception {
@@ -37,7 +34,6 @@ public class main {
         int cout = Integer.parseInt(lines[3]);
         Arc arc = new Arc(source, destination, cout);
         graphe.Ajouter(arc);
-        // System.out.println(graphe.NbArcs());
       }
       line = bufferedReader.readLine();
     }

@@ -41,7 +41,6 @@ public class GrapheListe implements IGraphe {
 	  arcs.remove(a.de);
 	  nbarcs--;
 	  a.cout=0;
-	  this.Adjacents(a.vers).iterator().next().de=0;
 	  if(!this.Existe(a.de, a.vers) && !this.Existe(a.vers, a.de) )
 		  nbnoeuds--;
 		  
