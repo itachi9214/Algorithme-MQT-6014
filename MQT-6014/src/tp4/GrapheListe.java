@@ -37,11 +37,11 @@ public class GrapheListe implements IGraphe {
   }
 
   public void Retirer(Arc a) {
-	  //arcs.remove(a.vers);
+	  
 	  arcs.remove(a.de);
 	  nbarcs--;
 	  a.cout=0;
-	  this.Adjacents(a.de).iterator().next().vers=Integer.MAX_VALUE;
+	  this.Adjacents(a.vers).iterator().next().de=0;
 	  if(!this.Existe(a.de, a.vers) && !this.Existe(a.vers, a.de) )
 		  nbnoeuds--;
 		  

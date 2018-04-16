@@ -10,7 +10,7 @@ public class main {
     IGraphe g = Charger("src/tp4/rome99.gr");
     DeuxChemins deux = new DeuxChemins(g);
     System.out.println(deux.Recherche(1, 10));
-    g.Retirer(g.TrouverArc(160, 159));
+    g.Retirer(g.TrouverArc(1, 22));
     System.out.println(deux.Recherche(1, 10));
 
   }
